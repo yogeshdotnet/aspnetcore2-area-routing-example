@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace Core_Basic.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class LoginController : Controller
+    [Route("")]
+    public class DashBoardController : Controller
     {
+
+        [Route("[area]/Login")] // https://localhost:44347/Admin/Login
+        
         public IActionResult Index()
         {
-            return Content("Area Admin Login Controller and Index Action");
+            return Content("Index Action of Admin Area DashBoard Controller");
         }
     }
 }

@@ -31,49 +31,14 @@ namespace Core_Basic
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc(routes =>
-            {
-                routes.MapAreaRoute(
-    name: "default",
-    areaName: "Guest",
-    template: "Guest/{controller}/{action}/{id?}",
-    defaults: new { controller = "GuestLogin", action = "Index" });
-            });
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                  name: "areas",
-                  template: "{area:exists}/{controller=Login}/{action=Index}/{id?}"
-                );
-            });
-          
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("yogesh", CustomRouteHandler());
+          app.UseMvcWithDefaultRoute();
+                 
                
-                routes.MapRoute(
-                    name: "default3",
-                    template: "MyHome/{controller=Student}/{action=Index}/{id:int?}"
-
-                    );
-                routes.MapRoute(
-                    name: "default2",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" },
-                    constraints: new { id = new IntRouteConstraint() }
-                    );
-              
-            });
+               
+               
 
 
         }
-        private static RequestDelegate CustomRouteHandler()
-        {
-            return async (c) =>
-            {
-                await Task.Run(() => c.Response.Redirect("https://yogeshdotnet.com"));
-            };
-        }
+      
     }
 }
